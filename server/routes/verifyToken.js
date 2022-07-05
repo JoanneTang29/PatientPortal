@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// Add this middleware to any routes that we ant to be protected/private
+// Add this middleware to any routes that we want to be protected/private
 const verify = (req, res, next) => {
   const token = req.header('auth-token');
   if (!token) return res.status(401).send('Access Denied');

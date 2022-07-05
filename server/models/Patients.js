@@ -10,7 +10,7 @@ const patientSchema = new mongoose.Schema({
     require: true,
   },
   dateOfBirth: {
-    type: Date,
+    type: String,
     require: true,
   },
   height: {
@@ -19,10 +19,10 @@ const patientSchema = new mongoose.Schema({
   weight: {
     type: Number,
   },
-  medicalDx: {
+  medicalHx: {
     type: String,
   },
-  Prescription: {
+  medications: {
     type: String,
   },
 });
