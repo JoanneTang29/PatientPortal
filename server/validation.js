@@ -1,5 +1,5 @@
 // Validation
-const Joi = require('joi');
+const { Joi } = require('express-validation');
 
 const registrationValidation = {
   registrationValidationObject: {
@@ -14,7 +14,7 @@ const registrationValidation = {
 const loginValidation = {
   loginValidationObject: {
     body: Joi.object({
-      name: Joi.string().min(6).required(),
+      // name: Joi.string().min(6).required(),
       email: Joi.string().min(6).required(),
       password: Joi.string().min(6).required(),
     }),

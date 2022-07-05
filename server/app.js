@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 // Import Routes
 const authRoute = require('./routes/auth');
+const patientRoute = require('./routes/patients');
 
 // CONNECT TO OUR CONFIG.ENV FILE
 dotenv.config({
@@ -19,10 +20,7 @@ const DB = mongoose.connect(
 app.use(express.json());
 // Route Middlewares
 app.use('/api/user', authRoute);
-
-// app.get('/login', (req, res) => {
-//   res.send('Login Page');
-// });
+app.use('/api/patients', patientRoute);
 
 const port = 3000;
 
