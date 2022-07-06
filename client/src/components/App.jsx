@@ -8,6 +8,7 @@ import RegisterAndLogin from './RegisterAndLogin';
 import Navigation from './Navigation';
 import Patients from './Patients';
 import PatientForm from './PatientForm';
+import EditPatient from './EditPatient';
 
 // Create component
 const App = () => {
@@ -37,6 +38,12 @@ const App = () => {
           path="/patientform"
           render={(routerProps) => {
             return <PatientForm {...routerProps} />;
+          }}
+        />
+        <Route
+          path="/patient/edit/:id"
+          render={(routerProps) => {
+            return <EditPatient {...routerProps} />;
           }}
         />
       </Switch>

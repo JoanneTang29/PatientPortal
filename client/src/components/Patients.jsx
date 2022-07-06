@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import axios from 'axios';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -9,6 +9,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 const Patients = (props) => {
   const [patients, setPatients] = useState([]);
   const [onePatient, setOnePatient] = useState([]);
+  let history = useHistory();
 
   useEffect(() => {
     // Create a helper function to make api calls
@@ -46,11 +47,12 @@ const Patients = (props) => {
     );
   };
 
-  // Update patient
-  // const updatePatient = async (id, value) => {
-  //   console.log('patient updated');
-  //   let data = await axios.patch(`/api/patients/${id}`, { firstName: value });
-  // };
+  const routeEditPage = (id) => {
+    console.log('edit clicked');
+    let path = `/patient/edit/${id}`;
+    history.push(path);
+    console.log('new page');
+  };
 
   // Create patientList
   const patientList = patients.map((element) => {
@@ -64,7 +66,7 @@ const Patients = (props) => {
         <td onClick={() => deletePatient(element._id)} id="deleteIcon">
           <DeleteRoundedIcon />
         </td>
-        <td onClick={() => updatePatient(element._id)} id="editIcon">
+        <td onClick={() => routeEditPage(element._id)} id="editIcon">
           <EditRoundedIcon />
         </td>
       </tr>
