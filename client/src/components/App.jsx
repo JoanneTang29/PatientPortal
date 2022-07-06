@@ -6,8 +6,10 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RegisterAndLogin from './RegisterAndLogin';
 import Navigation from './Navigation';
+import Home from './Home';
 import Patients from './Patients';
 import PatientForm from './PatientForm';
+import Profile from './Profile';
 import EditPatient from './EditPatient';
 
 // Create component
@@ -29,6 +31,13 @@ const App = () => {
           }}
         /> */}
         <Route
+          path="/home"
+          render={(routerProps) => {
+            return <Home {...routerProps} />;
+          }}
+        />
+
+        <Route
           path="/patients"
           render={(routerProps) => {
             return <Patients {...routerProps} />;
@@ -41,11 +50,18 @@ const App = () => {
           }}
         />
         <Route
-          path="/patient/edit/:id"
+          path="/patient/:id"
+          render={(routerProps) => {
+            return <Profile {...routerProps} />;
+          }}
+        />
+        <Route
+          path="/editpatient/:id"
           render={(routerProps) => {
             return <EditPatient {...routerProps} />;
           }}
         />
+        <Route path="/messages" />
       </Switch>
     </div>
   );

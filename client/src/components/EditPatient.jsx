@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import { Form, FloatingLabel } from 'react-bootstrap';
 
-const EditPatient = (props) => {
+const EditPatient = ({ element }) => {
   const [message, setMessage] = useState('');
   const [values, setValues] = useState({
     firstName: '',
@@ -17,9 +17,9 @@ const EditPatient = (props) => {
     medications: '',
   });
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log('submitted');
+    console.log('edit page submitted');
     const {
       firstName,
       lastName,
@@ -41,10 +41,9 @@ const EditPatient = (props) => {
       medications,
     };
 
-    await axios.post('/api/patients', patient);
-    setMessage('Patient added');
+    await axios.patch('/api/patient/_id', patient);
+    setMessage('Patient information updated');
     setTimeout(() => setMessage(''), 3000);
-    e.target.reset();
   };
 
   const handleChange = (name) => (e) => {
@@ -53,9 +52,9 @@ const EditPatient = (props) => {
 
   return (
     <div className="PatientForm">
-      <h1>New Patient</h1>
+      <h1>Edit Patient</h1>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleUpdate}>
           <FloatingLabel
             controlId="floatingInput"
             label="First Name"
@@ -66,7 +65,7 @@ const EditPatient = (props) => {
             <Form.Control
               type="text"
               placeholder="First Name"
-              required="required"
+              //   required="required"
             />
           </FloatingLabel>
           <FloatingLabel
@@ -79,7 +78,7 @@ const EditPatient = (props) => {
             <Form.Control
               type="text"
               placeholder="Last Name"
-              required="required"
+              //   required="required"
             />
           </FloatingLabel>
           <FloatingLabel
@@ -92,7 +91,7 @@ const EditPatient = (props) => {
             <Form.Control
               type="text"
               placeholder="Date of Birth"
-              required="required"
+              //   required="required"
             />
           </FloatingLabel>
           <FloatingLabel
@@ -105,7 +104,7 @@ const EditPatient = (props) => {
             <Form.Control
               type="text"
               placeholder="Gender"
-              required="required"
+              //   required="required"
             />
           </FloatingLabel>
           <FloatingLabel

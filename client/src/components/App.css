@@ -56,11 +56,11 @@ body {
 }
 
 .PatientList {
-    padding: 2rem 0 0 2rem;
+    padding: 3rem 0 0 3rem;
 }
 
 .PatientForm {
-    padding: 2rem 0 0 2rem;
+    padding: 3rem 0 0 3rem;
     width: 50%
 }
 
@@ -72,13 +72,22 @@ body {
     color: #13315c;
 }
 
+.Profile {
+    padding: 1rem 0 0 1rem;
+}
+
+.Home {
+    padding: 3rem 0 0 3rem;
+    width: 1000px;
+}
+
 #deleteIcon {
     text-align: center;
     color: #e63946;
     cursor: pointer;
 }
 
-#editIcon {
+#editIcon, #viewIcon {
     text-align: center;
     cursor: pointer;
 }

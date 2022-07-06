@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import MessageRoundedIcon from '@mui/icons-material/MessageRounded';
 import FormatAlignJustifyRoundedIcon from '@mui/icons-material/FormatAlignJustifyRounded';
@@ -13,7 +13,7 @@ export const NavData = [
   },
   {
     title: 'Patients',
-    icon: <AccountCircleRoundedIcon />,
+    icon: <PeopleAltRoundedIcon />,
     link: '/patients',
   },
   {
