@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 // Additional imports
 import { Route, Switch } from 'react-router-dom';
@@ -10,8 +11,8 @@ import PatientForm from './PatientForm';
 // Create component
 const App = () => {
   return (
-    <div>
-      <Route componenet={Navigation} />
+    <div className="App">
+      <Route component={Navigation} />
       <Switch>
         <Route
           exact
