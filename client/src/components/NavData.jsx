@@ -29,6 +29,6 @@ export const NavData = [
   {
     title: 'Forms',
     icon: <FormatAlignJustifyRoundedIcon />,
-    link: '/patientforms',
+    link: '/patientform',
   },
 ];

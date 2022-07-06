@@ -1,12 +1,14 @@
 .App {
     width: 100vw;
     height: 100vh;
-    background-color:#eef4ed;
+    background-color:#fffcf2;
+    display: flex;
 }
 
 body {
     margin: 0;
     padding: 0;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .Navigation {
@@ -17,7 +19,7 @@ body {
 
 .NavbarList {
     height: auto;
-    padding: 0;
+    padding: 2rem;
     width: 100%;
 }
 
@@ -51,4 +53,36 @@ body {
 
 .row #title {
     flex: 70%;
+}
+
+.PatientList {
+    padding: 2rem 0 0 2rem;
+}
+
+.PatientForm {
+    padding: 2rem 0 0 2rem;
+    width: 50%
+}
+
+.PatientForm form {
+    width: 500px;
+}
+
+.PatientForm button {
+    color: #13315c;
+}
+
+#deleteIcon {
+    text-align: center;
+    color: #e63946;
+    cursor: pointer;
+}
+
+#editIcon {
+    text-align: center;
+    cursor: pointer;
+}
+
+#genderColumn {
+    text-align: center;
 }

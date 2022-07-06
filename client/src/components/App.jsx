@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 
 // Additional imports
-import { Route, Switch } from 'react-router-dom';
+// import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RegisterAndLogin from './RegisterAndLogin';
 import Navigation from './Navigation';
 import Patients from './Patients';
@@ -12,9 +13,9 @@ import PatientForm from './PatientForm';
 const App = () => {
   return (
     <div className="App">
-      <Route component={Navigation} />
+      <Navigation />
       <Switch>
-        <Route
+        {/* <Route
           exact
           path="/"
           render={(routerProps) => {
@@ -25,7 +26,7 @@ const App = () => {
               />
             );
           }}
-        />
+        /> */}
         <Route
           path="/patients"
           render={(routerProps) => {
