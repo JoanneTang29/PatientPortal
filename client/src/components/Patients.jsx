@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 
-const Patients = (props) => {
+const Patients = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
@@ -33,13 +34,10 @@ const Patients = (props) => {
     return (
       <div key={element._id}>
         <div>
-          {element.firstName} {element.lastName}
+          {element.lastName}, {element.firstName} DOB:{element.dateOfBirth}{' '}
+          Gender: {element.gender} {element.height}in {element.weight}lbs
+          Medical Hx:{element.medicalHx}
         </div>
-        <div>{element.dateOfBirth}</div>
-        <div>{element.height}"</div>
-        <div>{element.weight} lbs</div>
-        <div>{element.medicalHx}</div>
-        <div>{element.medications}</div>
       </div>
     );
   });
@@ -48,6 +46,7 @@ const Patients = (props) => {
     <div>
       <h1>Patient List</h1>
       <div>{patientList}</div>
+      <Link to="/patientform">Patient Forms</Link>
     </div>
   );
 };

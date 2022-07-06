@@ -13,6 +13,10 @@ const patientSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  gender: {
+    type: String,
+    require: true,
+  },
   height: {
     type: Number,
   },

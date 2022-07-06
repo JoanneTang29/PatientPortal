@@ -67,6 +67,7 @@ exports.getOnePatient = async (req, res) => {
     });
   }
 };
+
 exports.deletePatient = async (req, res) => {
   try {
     // Let's retrieve a single patient
@@ -83,6 +84,7 @@ exports.deletePatient = async (req, res) => {
     });
   }
 };
+
 exports.updatePatient = async (req, res) => {
   try {
     // Let's retrieve a single patient

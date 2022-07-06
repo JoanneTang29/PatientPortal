@@ -5,13 +5,13 @@ import { Route, Switch } from 'react-router-dom';
 import RegisterAndLogin from './RegisterAndLogin';
 import Navigation from './Navigation';
 import Patients from './Patients';
+import PatientForm from './PatientForm';
 
 // Create component
 const App = () => {
   return (
     <div>
       <Route componenet={Navigation} />
-      <Route />
       <Switch>
         <Route
           exact
@@ -29,6 +29,12 @@ const App = () => {
           path="/patients"
           render={(routerProps) => {
             return <Patients {...routerProps} />;
+          }}
+        />
+        <Route
+          path="/patientform"
+          render={(routerProps) => {
+            return <PatientForm {...routerProps} />;
           }}
         />
       </Switch>
