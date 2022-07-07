@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import { useHistory } from 'react-router-dom';
-import { Table } from 'react-bootstrap';
 import axios from 'axios';
-import { Button } from '@mui/material';
+import { Table } from 'react-bootstrap';
+import { Button, TextField } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import PageviewRoundedIcon from '@mui/icons-material/PageviewRounded';
+import './App.css';
 
 const Patients = (props) => {
   const [patients, setPatients] = useState([]);
   const [onePatient, setOnePatient] = useState([]);
+  const [searchedValue, setSearchedValue] = useState('');
   let history = useHistory();
 
   useEffect(() => {
@@ -55,40 +56,26 @@ const Patients = (props) => {
     );
   };
 
-  // Create patientList
-  const patientList = patients.map((element) => {
-    return (
-      <tr key={element._id}>
-        <td id="viewIcon" onClick={() => routePatientProfile(element._id)}>
-          <PageviewRoundedIcon />
-        </td>
-        <td>{element.firstName}</td>
-        <td>{element.lastName}</td>
-        <td>{element.dateOfBirth}</td>
-        <td id="genderColumn">{element.gender}</td>
-        <td>123456789</td>
-        <td onClick={() => routeEditPage(element._id)} id="editIcon">
-          <EditRoundedIcon />
-        </td>
-        <td onClick={() => deletePatient(element._id)} id="deleteIcon">
-          <DeleteRoundedIcon />
-        </td>
-      </tr>
-    );
-  });
-
   return (
     <div className="PatientList">
       <h1>Patient List</h1>
-      <Button
-        onClick={() => routePatientForm()}
-        style={{
-          padding: '1rem',
-          float: 'right',
-        }}
-      >
-        Add patient
-      </Button>
+      <div className="PatientSearchAndAdd">
+        <TextField
+          id="standard-helperText"
+          label="Search patient"
+          placeholder="Search patient"
+          onChange={(e) => setSearchedValue(e.target.value)}
+        />
+        <Button
+          onClick={() => routePatientForm()}
+          style={{
+            padding: '1rem',
+            float: 'right',
+          }}
+        >
+          Add patient
+        </Button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -102,7 +89,43 @@ const Patients = (props) => {
             <th>Delete</th>
           </tr>
         </thead>
-        <tbody>{patientList}</tbody>
+        <tbody>
+          {patients
+            .filter(
+              (row) =>
+                // note that I've incorporated the searchedVal length check here
+                !searchedValue.length ||
+                row.firstName
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchedValue.toString().toLowerCase()) ||
+                row.lastName
+                  .toString()
+                  .toLowerCase()
+                  .includes(searchedValue.toString().toLowerCase())
+            )
+            .map((element) => (
+              <tr key={element._id}>
+                <td
+                  id="viewIcon"
+                  onClick={() => routePatientProfile(element._id)}
+                >
+                  <PageviewRoundedIcon />
+                </td>
+                <td>{element.firstName}</td>
+                <td>{element.lastName}</td>
+                <td>{element.dateOfBirth}</td>
+                <td id="genderColumn">{element.gender}</td>
+                <td>123456789</td>
+                <td onClick={() => routeEditPage(element._id)} id="editIcon">
+                  <EditRoundedIcon />
+                </td>
+                <td onClick={() => deletePatient(element._id)} id="deleteIcon">
+                  <DeleteRoundedIcon />
+                </td>
+              </tr>
+            ))}
+        </tbody>
       </Table>
     </div>
   );

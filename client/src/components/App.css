@@ -119,3 +119,12 @@ body {
 #genderColumn {
     text-align: center;
 }
+
+.PatientSearchAndAdd {
+padding-top: 1rem;
+padding-bottom: 1rem;
+}
+
+#standard-helperText {
+    width: 20rem;
+}

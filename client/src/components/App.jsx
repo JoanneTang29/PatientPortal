@@ -11,6 +11,8 @@ import Patients from './Patients';
 import PatientForm from './PatientForm';
 import Profile from './Profile';
 import EditPatient from './EditPatient';
+import Appointments from './Appointments';
+import Messages from './Messages';
 
 // Create component
 const App = () => {
@@ -61,7 +63,18 @@ const App = () => {
             return <EditPatient {...routerProps} />;
           }}
         />
-        <Route path="/messages" />
+        <Route
+          path="/appointments"
+          render={(routerProps) => {
+            return <Appointments {...routerProps} />;
+          }}
+        />
+        <Route
+          path="/messages"
+          render={(routerProps) => {
+            return <Messages {...routerProps} />;
+          }}
+        />
       </Switch>
     </div>
   );
