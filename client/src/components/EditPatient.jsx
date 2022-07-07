@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import { Button } from '@mui/material';
 import { Form, FloatingLabel } from 'react-bootstrap';
 
-const EditPatient = ({ element }) => {
+const EditPatient = ({ props }) => {
+  let { id } = useParams();
   const [message, setMessage] = useState('');
   const [values, setValues] = useState({
     firstName: '',
@@ -17,9 +19,17 @@ const EditPatient = ({ element }) => {
     medications: '',
   });
 
+  useEffect(() => {
+    const getPatientInfo = async (id) => {
+      const res = await axios.get(`/api/patients/${id}`);
+      console.log(res.data.data.patient);
+      setValues(res.data.data.patient);
+    };
+    getPatientInfo(id);
+  }, []);
+
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log('edit page submitted');
     const {
       firstName,
       lastName,
@@ -31,6 +41,7 @@ const EditPatient = ({ element }) => {
       medications,
     } = values;
     let patient = {
+      id,
       firstName,
       lastName,
       dateOfBirth,
@@ -40,109 +51,104 @@ const EditPatient = ({ element }) => {
       medicalHx,
       medications,
     };
-
-    await axios.patch('/api/patient/_id', patient);
+    await axios.patch(`/api/patients/${id}`, patient);
     setMessage('Patient information updated');
     setTimeout(() => setMessage(''), 3000);
   };
 
   const handleChange = (name) => (e) => {
+    console.log('name', name, e.target.value);
     setValues({ ...values, [name]: e.target.value });
   };
 
   return (
-    <div className="PatientForm">
+    <div className="EditPatientForm">
       <h1>Edit Patient</h1>
       <div>
         <form onSubmit={handleUpdate}>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="First Name"
-            className="mb-3"
-            value={values.firstName}
-            onChange={handleChange('firstName')}
-          >
+          <div className="form-field">
+            <div className="form-group">
+              <label>First Name</label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                defaultValue={values.firstName}
+                onChange={handleChange('firstName')}
+                required="required"
+              />
+            </div>{' '}
+            <div className="form-group">
+              <label>Last Name</label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                defaultValue={values.lastName}
+                onChange={handleChange('lastName')}
+                required="required"
+              />
+            </div>{' '}
+          </div>
+          <div className="form-field">
+            {' '}
+            <div className="form-group">
+              <label>Date of Birth</label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                defaultValue={values.dateOfBirth}
+                onChange={handleChange('dateOfBirth')}
+                required="required"
+              />
+            </div>{' '}
+            <div className="form-group">
+              <label>Gender</label>
+              <Form.Control
+                type="text"
+                className="mb-3"
+                defaultValue={values.gender}
+                onChange={handleChange('gender')}
+              />
+            </div>{' '}
+          </div>
+          <div className="form-field">
+            {' '}
+            <div className="form-group">
+              <label>Height</label>
+              <Form.Control
+                type="number"
+                className="mb-3"
+                value={values.height}
+                onChange={handleChange('height')}
+              />
+            </div>{' '}
+            <div className="form-group">
+              <label>Weight</label>
+              <Form.Control
+                type="number"
+                className="mb-3"
+                value={values.weight}
+                onChange={handleChange('weight')}
+              />
+            </div>{' '}
+          </div>
+          <div className="form-group">
+            <label>Medical History</label>
             <Form.Control
               type="text"
-              placeholder="First Name"
-              //   required="required"
+              className="mb-3"
+              defaultValue={values.medicalHx}
+              onChange={handleChange('medicalHx')}
             />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Last Name"
-            className="mb-3"
-            value={values.lastName}
-            onChange={handleChange('lastName')}
-          >
+          </div>
+          <div className="form-group">
+            <label>Medications</label>
             <Form.Control
               type="text"
-              placeholder="Last Name"
-              //   required="required"
+              className="mb-3"
+              defaultValue={values.medications}
+              onChange={handleChange('medications')}
             />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="MM/DD/YYYY"
-            className="mb-3"
-            value={values.dateOfBirth}
-            onChange={handleChange('dateOfBirth')}
-          >
-            <Form.Control
-              type="text"
-              placeholder="Date of Birth"
-              //   required="required"
-            />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Gender"
-            className="mb-3"
-            value={values.gender}
-            onChange={handleChange('gender')}
-          >
-            <Form.Control
-              type="text"
-              placeholder="Gender"
-              //   required="required"
-            />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Height (inches)"
-            className="mb-3"
-            value={values.height}
-            onChange={handleChange('height')}
-          >
-            <Form.Control type="number" placeholder="height" />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Weight (lbs)"
-            className="mb-3"
-            value={values.weight}
-            onChange={handleChange('weight')}
-          >
-            <Form.Control type="number" placeholder="Weight" />
-          </FloatingLabel>
-          <FloatingLabel
-            controlId="floatingInput"
-            label="List medical history"
-            className="mb-3"
-            value={values.medicalHx}
-            onChange={handleChange('medicalHx')}
-          >
-            <Form.Control type="text" placeholder="medicalHx" />
-          </FloatingLabel>{' '}
-          <FloatingLabel
-            controlId="floatingInput"
-            label="Medications"
-            className="mb-3"
-            value={values.medications}
-            onChange={handleChange('medications')}
-          >
-            <Form.Control type="text" placeholder="Medications" />
-          </FloatingLabel>
+          </div>
           <Button variant="outlined" disabled={!values} type="submit">
             Submit
           </Button>

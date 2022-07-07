@@ -88,7 +88,7 @@ exports.deletePatient = async (req, res) => {
 exports.updatePatient = async (req, res) => {
   try {
     // Let's retrieve a single patient
-    const updatePatient = await Patients.findByIdAndUpdate(
+    const updatedPatient = await Patients.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -97,7 +97,7 @@ exports.updatePatient = async (req, res) => {
     res.status(200).json({
       status: 'success',
       data: {
-        updatedTodo,
+        updatedPatient,
       },
     });
   } catch (error) {

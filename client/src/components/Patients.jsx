@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import axios from 'axios';
+import { Button } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import PageviewRoundedIcon from '@mui/icons-material/PageviewRounded';
@@ -25,6 +26,12 @@ const Patients = (props) => {
 
     // onePatient in the dependency array will refresh the page when this state changes
   }, [onePatient]);
+
+  // Routes to add patient
+  const routePatientForm = () => {
+    let path = 'patientform';
+    history.push(path);
+  };
 
   // Routes to edit page
   const routeEditPage = (id) => {
@@ -73,6 +80,15 @@ const Patients = (props) => {
   return (
     <div className="PatientList">
       <h1>Patient List</h1>
+      <Button
+        onClick={() => routePatientForm()}
+        style={{
+          padding: '1rem',
+          float: 'right',
+        }}
+      >
+        Add patient
+      </Button>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -88,7 +104,6 @@ const Patients = (props) => {
         </thead>
         <tbody>{patientList}</tbody>
       </Table>
-      <Link to="/patientform">Add new patient</Link>
     </div>
   );
 };

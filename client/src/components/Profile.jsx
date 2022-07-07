@@ -24,7 +24,7 @@ const Profile = (props) => {
     history.push(path);
   };
 
-  const populateProfile = () => {
+  const patientProfile = () => {
     return (
       <div className="Profile">
         <Card style={{ width: '25rem' }}>
@@ -48,7 +48,7 @@ const Profile = (props) => {
           </ListGroup>
           <Card.Body>
             <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link onClick={() => routeEditPage(profile._id)}>
+            <Card.Link href="" onClick={() => routeEditPage(profile._id)}>
               Edit {profile.firstName}
             </Card.Link>
           </Card.Body>
@@ -59,7 +59,7 @@ const Profile = (props) => {
 
   return (
     <div className="Profile">
-      <div>{populateProfile()}</div>
+      <div>{patientProfile()}</div>
     </div>
   );
 };

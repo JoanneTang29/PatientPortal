@@ -17,7 +17,8 @@ patientRouter
   .route('/:id')
   .get(patientController.getOnePatient)
   .delete(patientController.deletePatient)
-  .put(patientController.updatePatient);
+  .put(patientController.updatePatient)
+  .patch(patientController.updatePatient);
 
 // router.get('/', verify, (req, res) => {
 //   res.send(req.user);

@@ -103,11 +103,7 @@ const PatientForm = (props) => {
             value={values.gender}
             onChange={handleChange('gender')}
           >
-            <Form.Control
-              type="text"
-              placeholder="Gender"
-              required="required"
-            />
+            <Form.Control type="text" placeholder="Gender" />
           </FloatingLabel>
           <FloatingLabel
             controlId="floatingInput"

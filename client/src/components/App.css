@@ -72,6 +72,30 @@ body {
     color: #13315c;
 }
 
+.EditPatientForm {
+    padding: 3rem 0 0 3rem;
+    width: 600px;
+}
+
+.form-field {
+    display: flex;
+}
+
+.form-group {
+    width: 100%;
+    padding-right: 1rem;
+}
+
+.form-group label {
+    width: 200px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.EditPatientForm button {
+    color: #13315c;
+}
+
 .Profile {
     padding: 1rem 0 0 1rem;
 }
