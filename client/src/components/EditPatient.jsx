@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import './App.css';
 import axios from 'axios';
 import { Button } from '@mui/material';
-import { Form, FloatingLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const EditPatient = ({ props }) => {
   let { id } = useParams();
+  let history = useHistory();
   const [message, setMessage] = useState('');
   const [values, setValues] = useState({
     firstName: '',
@@ -52,13 +53,19 @@ const EditPatient = ({ props }) => {
       medications,
     };
     await axios.patch(`/api/patients/${id}`, patient);
-    setMessage('Patient information updated');
+    setMessage('Patient updated');
     setTimeout(() => setMessage(''), 3000);
   };
 
   const handleChange = (name) => (e) => {
     console.log('name', name, e.target.value);
     setValues({ ...values, [name]: e.target.value });
+  };
+
+  // Routes to patient profile
+  const routePatientProfile = (id) => {
+    let path = `/patient/${id}`;
+    history.push(path);
   };
 
   return (
@@ -151,10 +158,18 @@ const EditPatient = ({ props }) => {
           </div>
           <Button variant="outlined" disabled={!values} type="submit">
             Submit
-          </Button>
-          <div>{message}</div>
+          </Button>{' '}
+          <span> {message}</span>
         </form>
       </div>
+      <a
+        href=""
+        onClick={() => {
+          routePatientProfile(values._id);
+        }}
+      >
+        View Patient
+      </a>
     </div>
   );
 };

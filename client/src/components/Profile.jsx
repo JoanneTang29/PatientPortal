@@ -47,7 +47,6 @@ const Profile = (props) => {
             <ListGroup.Item>Medications: {profile.medications}</ListGroup.Item>
           </ListGroup>
           <Card.Body>
-            <Card.Link href="#">Card Link</Card.Link>
             <Card.Link href="" onClick={() => routeEditPage(profile._id)}>
               Edit {profile.firstName}
             </Card.Link>
