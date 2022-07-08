@@ -8,7 +8,7 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import PageviewRoundedIcon from '@mui/icons-material/PageviewRounded';
 import './App.css';
 
-const Patients = (props) => {
+const Patients = ({ jwtToken }) => {
   const [patients, setPatients] = useState([]);
   const [onePatient, setOnePatient] = useState([]);
   const [searchedValue, setSearchedValue] = useState('');
@@ -17,8 +17,14 @@ const Patients = (props) => {
   useEffect(() => {
     // Create a helper function to make api calls
     const helperFunction = async () => {
+      console.log('helper fn:', jwtToken);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      };
       // Retrieve data from api
-      const res = await axios.get('/api/patients');
+      const res = await axios.get('/api/patients', config);
       // Lets retrieve the data from the response object
       const result = res.data;
       setPatients(result.data);

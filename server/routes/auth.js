@@ -40,20 +40,25 @@ router.post(
   async (req, res) => {
     // Check if email exists
     const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).send('Invalid email or password');
-    // console.log('user', user);
-
-    // Check if password is correct
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      user.password
-    );
-    if (!validPassword)
-      return res.status(400).send('Invalid email or password.');
-
-    // Create and assign a token
-    const token = jwt.sign({ _id: user._id }, process.env.SECRET_TOKEN);
-    res.header('auth-token', token).send(token);
+    console.log('user', user);
+    if (!user) {
+      console.log('res status');
+      return res.status(401).send('Invalid e-mail or password');
+    } else {
+      // Check if password is correct
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        user.password
+      );
+      if (!validPassword) {
+        console.log('invalid pw');
+        return res.status(401).send('Invalid email or password.');
+      } else if (validPassword) {
+        // Create and assign a token
+        const token = jwt.sign({ _id: user._id }, process.env.SECRET_TOKEN);
+        res.header('auth-token', token).send(token);
+      }
+    }
   }
 );
 

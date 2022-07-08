@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RegisterAndLogin = () => {
+const RegisterAndLogin = ({ savejwtToken }) => {
   const [nameRegistration, setNameRegistration] = useState('');
   const [emailRegistration, setEmailRegistration] = useState('');
   const [passwordRegistration, setPasswordRegistration] = useState('');
@@ -31,15 +31,22 @@ const RegisterAndLogin = () => {
       })
       .then((res) => {
         console.log('res', res);
-        if (res.data.message) {
+        console.log(res.status);
+        if (res.status === 200) {
+          //   setLoginStatus(res.data[0].email);
+          console.log('savejwttoken');
+          setLoginStatus('Login successful');
+          savejwtToken(res.data);
+        } else {
           //   setLoginStatus(res.data.message);
           setLoginStatus('Invalid email/password');
-        } else {
-          //   setLoginStatus(res.data[0].email);
-          setLoginStatus('Login successful');
         }
+      })
+      .catch((error) => {
+        setLoginStatus(error.response);
       });
   };
+
   return (
     <div>
       <h1>Patient Portal</h1>

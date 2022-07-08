@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 // Additional imports
@@ -16,22 +16,36 @@ import Messages from './Messages';
 
 // Create component
 const App = () => {
+  const [jwtToken, setjwtToken] = useState('');
+
+  useEffect(() => {
+    console.log('page refreshed');
+    console.log('jwt Token', jwtToken);
+  }, [jwtToken]);
+
+  const savejwtToken = (token) => {
+    if (token) {
+      setjwtToken(token);
+    }
+  };
+
   return (
     <div className="App">
       <Navigation />
       <Switch>
-        {/* <Route
+        <Route
           exact
           path="/"
           render={(routerProps) => {
             return (
               <RegisterAndLogin
                 {...routerProps}
+                savejwtToken={savejwtToken}
                 registerAndLoginData="This is data from register and login component"
               />
             );
           }}
-        /> */}
+        />
         <Route
           path="/home"
           render={(routerProps) => {
@@ -42,7 +56,7 @@ const App = () => {
         <Route
           path="/patients"
           render={(routerProps) => {
-            return <Patients {...routerProps} />;
+            return <Patients {...routerProps} jwtToken={jwtToken} />;
           }}
         />
         <Route

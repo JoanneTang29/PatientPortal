@@ -12,6 +12,7 @@ const patientRouter = express.Router();
 patientRouter
   .route('/')
   .get(patientController.getPatients)
+  .post(patientController.getPatients)
   .post(patientController.createPatient);
 patientRouter
   .route('/:id')

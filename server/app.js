@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 // Import Routes
 const authRoute = require('./routes/auth');
 const patientRouter = require('./routes/patientRouter');
+const verify = require('./routes/verifyToken');
 
 // CONNECT TO OUR CONFIG.ENV FILE
 dotenv.config({
@@ -34,7 +35,7 @@ app.use(express.json());
 app.use(cors());
 // Route Middlewares
 app.use('/api/user', authRoute);
-app.use('/api/patients', patientRouter);
+app.use('/api/patients', verify, patientRouter);
 
 // Connect to DB
 const DB = mongoose.connect(

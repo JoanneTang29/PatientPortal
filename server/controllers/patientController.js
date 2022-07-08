@@ -13,7 +13,6 @@ exports.getPatients = async (req, res) => {
     // Retrieve all of the patients inside our db
     const patients = await Patients.find();
     // Send response
-    console.log('patients line 16', patients);
     res.status(200).json({
       status: 'success',
       results: patients.length,
