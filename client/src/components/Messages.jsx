@@ -30,23 +30,6 @@ const Messages = () => {
           </Card.Body>
         </Card>
       ))}
-
-      {/* <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Subject</th>
-          </tr>
-        </thead>
-        <tbody>
-          {inboxMessages.map((messages) => (
-            <tr key={messages.id}>
-              <td>{messages.name}</td>
-              <td>{messages.subject}</td>
-            </tr>
-          ))}
-        </tbody> */}
-      {/* </Table> */}
     </div>
   );
 };

@@ -23,14 +23,6 @@ app.use(
 );
 app.use(express.json());
 
-// ? if this will help with bad request error from axios
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: false,
-//   })
-// );
-// app.use(bodyParser.json);
-
 // Allows for crossplatform between front-end and back-end
 app.use(cors());
 // Route Middlewares
