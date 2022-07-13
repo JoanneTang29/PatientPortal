@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import PartialMessages from './PartialMessages';
-import Appointments from './Appointments';
+import PartialAppointments from './PartialAppointments';
+import PartialNotifications from './PartialNotifications';
+import PartialTodo from './PartialTodo';
 import axios from 'axios';
 
 const Home = () => {
@@ -18,9 +20,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1> Home </h1>
-      <PartialMessages inboxMessages={inboxMessages} />
+    <div className="Home">
+      <h1>Dashboard</h1>
+      <div className="HomeGrid">
+        <PartialAppointments />
+        <PartialMessages inboxMessages={inboxMessages} />
+        <PartialNotifications />
+        <PartialTodo />
+      </div>
     </div>
     // <Carousel>
     //   <Carousel.Item>

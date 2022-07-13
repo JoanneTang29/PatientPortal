@@ -162,6 +162,7 @@ const EditPatient = ({ props }) => {
           <span> {message}</span>
         </form>
       </div>
+      <br />
       <a
         href=""
         onClick={() => {
