@@ -19,7 +19,7 @@ const Patients = (props) => {
     const helperFunction = async () => {
       // Retrieve data from api
       const res = await axios.get('/api/patients');
-      // Lets retrieve the data from the response object
+      // Retrieve the data from the response object
       const result = res.data;
       setPatients(result.data);
     };
@@ -93,7 +93,7 @@ const Patients = (props) => {
           {patients
             .filter(
               (row) =>
-                // note that I've incorporated the searchedVal length check here
+                // searchedVal length check, search first or last name
                 !searchedValue.length ||
                 row.firstName
                   .toString()
